@@ -1,4 +1,4 @@
-// Luke-Luke dyanmic
+// Luke-Luke dynamic
 #include<iostream>
 #include<string>
 
@@ -11,4 +11,3 @@ int main() {
 
   return 0;
 }
-
