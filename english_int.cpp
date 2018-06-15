@@ -1,6 +1,7 @@
 // Luke-Luke dynamic
 #include<iostream>
 #include<string>
+#include<cmath>
 
 std::string digitToString(int d) {
   switch(d) {
@@ -51,6 +52,14 @@ std::string tensToString(int d) {
 }
 
 std::string englishInt(int changeMe) {
+  bool isNeg = false;
+  if(changeMe == 0) {
+    return "zero";
+  }
+  else if(changeMe < 0) {
+    isNeg = true;
+    changeMe = std::abs(changeMe);
+  }
   std::string ret = "";
 
   const std::string places[] = {
@@ -146,11 +155,15 @@ std::string englishInt(int changeMe) {
     }
   }
 
+  if(isNeg) {
+    ret = "negative " + ret;
+  }
   return ret;
 }
 
 int main() {
   std::cout<< 1337 <<" is: " <<englishInt(1337) <<std::endl;
+  std::cout<< -1337 <<" is: " <<englishInt(-1337) <<std::endl;
   std::cout<< 4321 <<" is: " <<englishInt(4321) <<std::endl;
   std::cout<< 3412 <<" is: " <<englishInt(3412) <<std::endl;
 
