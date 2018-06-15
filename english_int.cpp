@@ -1,4 +1,5 @@
 // Luke-Luke dynamic
+// 16.8 from Cracking the Coding Interview
 #include<iostream>
 #include<string>
 #include<cmath>
