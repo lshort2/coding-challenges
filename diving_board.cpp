@@ -4,10 +4,13 @@
 #include<vector>
 
 std::vector<int> allDivingBoardLengths(int k, int longer, int shorter) {
-  if(k == longer && longer == shorter) {
-    std::cout<< "stop giving me errors\n";
+  std::vector<int> vec;
+
+  for(int i=0, j=k; i<=k; i++, j--) {
+    vec.push_back(i*longer + j*shorter);
   }
-  return {1, 2, 3};
+
+  return vec;
 }
 
 int main() {
