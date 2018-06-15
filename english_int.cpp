@@ -3,6 +3,8 @@
 #include<string>
 #include<cmath>
 
+// convert a single digit from an int to a string
+// i.e. 9 --> "nine"
 std::string digitToString(int d) {
   switch(d) {
     case 9:
@@ -28,6 +30,8 @@ std::string digitToString(int d) {
   }
 }
 
+// used for converting tens digits for numbers greater than 19
+// i.e. 4 --> "forty"
 std::string tensToString(int d) {
   switch(d) {
     case 9:
@@ -51,6 +55,8 @@ std::string tensToString(int d) {
   }
 }
 
+// convert numbers 10 to 19 in "English"
+// i.e. 12 --> "twelve"
 std::string teensToString(int teens) {
   switch(teens) {
     case 19:
@@ -76,8 +82,12 @@ std::string teensToString(int teens) {
   }
 }
 
+// convert integer to string in "English"
+// i.e. 1337 --> "one thousand three hundred thirty seven"
 std::string englishInt(int changeMe) {
   bool isNeg = false;
+
+  // check if number is zero or negative
   if(changeMe == 0) {
     return "zero";
   }
@@ -85,7 +95,8 @@ std::string englishInt(int changeMe) {
     isNeg = true;
     changeMe = std::abs(changeMe);
   }
-  std::string ret = "";
+
+  // hold strings for various digit "places" in string array
   const std::string places[] = {
     "none",
     "thousand",
@@ -95,6 +106,8 @@ std::string englishInt(int changeMe) {
   };
 
 
+  std::string ret = "";
+
   for(int invar=1, i=0; changeMe/invar; invar*=1000, i++) {
     int temp = changeMe / invar;
     temp %= 1000;
@@ -102,18 +115,14 @@ std::string englishInt(int changeMe) {
 
     // evalue tens and ones digit
     if(temp%100 < 20 && temp%100 > 9) {
-      //handle teens and such
       tempString = teensToString(temp%100);
     }
     else {
-      // evaluate ones digit
       int ones = temp%10;
       tempString = digitToString(ones);
 
-      // evaluate tens digit
-      int tens = temp%100;
-      tens /= 10;
-      if(tens > 0) {
+      int tens = temp % 100 / 10;
+      if(tens) {
         if(tempString.empty()) {
           tempString = tensToString(tens);
         }
@@ -125,8 +134,7 @@ std::string englishInt(int changeMe) {
 
     // evaluate hundreds digit
     if(temp > 99) {
-      int hundreds = temp%1000;
-      hundreds /= 100;
+      int hundreds = temp % 1000 / 100;
 
       if(tempString.empty()) {
         tempString = digitToString(hundreds) + " hundred";
@@ -149,9 +157,11 @@ std::string englishInt(int changeMe) {
   }
 
   if(isNeg) {
-    ret = "negative " + ret;
+    return "negative " + ret;
   }
-  return ret;
+  else {
+    return ret;
+  }
 }
 
 int main() {
