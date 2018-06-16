@@ -27,10 +27,6 @@ std::pair<int, int> sumSwap(vector<int> a, vector<int> b) {
   // 1.) a smaller first
   unsigned int i=0;
   unsigned int j=0;
-  while(b[j] - a[i] < newDiff && j<b.size()) {
-    j++;
-  }
-
   for(; i<a.size(); i++) {
     while(b[j] - a[i] < newDiff && j<b.size()) {
       j++;
@@ -44,10 +40,6 @@ std::pair<int, int> sumSwap(vector<int> a, vector<int> b) {
   // 2.) b smaller first
   i=0;
   j=0;
-  while(a[i] - b[j] < newDiff && i<a.size()) {
-    i++;
-  }
-
   for(; i<a.size(); i++) {
     while(a[i] - b[j] < newDiff && i<a.size()) {
       i++;
