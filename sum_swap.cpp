@@ -40,7 +40,7 @@ std::pair<int, int> sumSwap(vector<int> a, vector<int> b) {
   // 2.) b smaller first
   i=0;
   j=0;
-  for(; i<a.size(); i++) {
+  for(; j<b.size(); j++) {
     while(a[i] - b[j] < newDiff && i<a.size()) {
       i++;
     }
