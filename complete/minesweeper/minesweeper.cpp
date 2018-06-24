@@ -32,6 +32,14 @@ void MineSweeper::runApp() {
     clickSpace(xCoord, yCoord);
     drawGrid();
   }
+
+  printScore();
+}
+
+void MineSweeper::printScore() {
+  int numClickableSpaces = m_width * m_height - m_numBombs;
+  std::cout<< "Total Score: " <<m_numSpacesClicked;
+  std::cout<<"/" << numClickableSpaces <<std::endl;
 }
 
 
@@ -70,6 +78,7 @@ void MineSweeper::clickSpace(int x, int y) {
   }
   else {
     m_displayGrid[y][x] = numSurroundingBombs(x, y);
+    ++m_numSpacesClicked;
 
     if(numSurroundingBombs(x, y) == 0) {
       for(int iterY=y-1; iterY<y+2; iterY++) {

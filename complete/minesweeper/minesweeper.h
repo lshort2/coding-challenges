@@ -16,6 +16,7 @@ class MineSweeper {
        bool isBomb(int x, int y);
        int numSurroundingBombs(int x, int y);
        void placeBombs(int x, int y);
+       void printScore();
        void revealRecurSpace(int x, int y);
 
        vector<vector<int> > m_grid;
