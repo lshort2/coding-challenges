@@ -60,7 +60,7 @@ void MineSweeper::placeBombs(int x, int y) {
 
 void MineSweeper::initializeGraph(int x, int y) {
   placeBombs(x, y);
-  revealRecurSpace(x, y);
+  clickSpace(x, y);
 }
 
 void MineSweeper::clickSpace(int x, int y) {
@@ -70,6 +70,16 @@ void MineSweeper::clickSpace(int x, int y) {
   }
   else {
     m_displayGrid[y][x] = numSurroundingBombs(x, y);
+
+    if(numSurroundingBombs(x, y) == 0) {
+      for(int iterY=y-1; iterY<y+2; iterY++) {
+        for(int iterX=x-1; iterX<x+2; iterX++) {
+          if(inRange(iterX, iterY) && m_displayGrid[iterY][iterX] == blank) {
+            clickSpace(iterX, iterY);
+          }
+        }
+      }
+    }
   }
 }
 
